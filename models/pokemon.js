@@ -28,9 +28,18 @@ const Pokemon = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    currentHealth: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     defenseValue: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    xp: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
     },
     level: {
       type: DataTypes.INTEGER,

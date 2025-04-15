@@ -5,7 +5,7 @@ import {
   createPokemon,
   deletePokemon,
   updatePokemon,
-} from "../controllers/userController.js";
+} from "../controllers/pokemonController.js";
 
 const userRouter = Router();
 

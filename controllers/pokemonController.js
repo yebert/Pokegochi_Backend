@@ -1,5 +1,5 @@
 import ErrorResponse from "../utils/ErrorResponse.js";
-import { Product, Category } from "../models/index.js";
+import Pokemon from "../models/pokemon.js";
 
 // GET /pokemon ALL
 const getPokemons = async (req, res) => {

@@ -59,6 +59,6 @@ const User = sequelize.define(
   { paranoid: true }
 );
 
-//User.sync();
+User.sync();
 
 export default User;

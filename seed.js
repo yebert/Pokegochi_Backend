@@ -38,6 +38,7 @@ const seedDB = async () => {
     const orderNumber = json.id;
     const types = json.types.map((t) => t.type.name);
     const health = json.stats[0].base_stat;
+    const currentHealth = health;
     const attackValue = json.stats[1].base_stat;
     const attack = json.moves[0].move.name;
     const defenseValue = json.stats[2].base_stat;
@@ -57,6 +58,7 @@ const seedDB = async () => {
       orderNumber,
       type,
       health,
+      currentHealth,
       attack,
       attackValue,
       defenseValue,
