@@ -46,7 +46,8 @@ const getPokemonById = async (req, res) => {
 // POST /pokemon
 const createPokemon = async (req, res) => {
   try {
-    const pokemon = await Product.create(req.body);
+    console.log(req.body);
+    const pokemon = await Pokemon.create(req.body);
     res.json(pokemon);
   } catch (error) {
     res.status(400).json({ error: error.message });
