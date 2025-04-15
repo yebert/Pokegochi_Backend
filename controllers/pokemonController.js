@@ -17,7 +17,7 @@ const getPokemons = async (req, res) => {
       offset = (parsedPage - 1) * parsedLimit;
     }
 
-    const pokemons = await Product.findAll(
+    const pokemons = await Pokemon.findAll(
       {
         where: filter,
       },
@@ -56,9 +56,10 @@ const createPokemon = async (req, res) => {
 // PUT /pokemon/:id
 const updatePokemon = async (req, res) => {
   try {
-    const product = await Product.findByPk(req.params.id);
-    if (!product) return res.status(404).json({ error: "Pokemon not found" });
-    await product.update(req.body);
+    console.log(req.body);
+    const pokemon = await Pokemon.findByPk(req.params.id);
+    if (!pokemon) return res.status(404).json({ error: "Pokemon not found" });
+    await pokemon.update(req.body);
     res.json(pokemon);
   } catch (error) {
     res.status(400).json({ error: error.message });

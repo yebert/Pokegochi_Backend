@@ -42,6 +42,7 @@ const createUser = async (req, res, next) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
   const {
     name,
     email,
@@ -57,27 +58,11 @@ const updateUser = async (req, res) => {
   } = req.body;
 
   try {
-    const user = await User.update(
-      {
-        name,
-        email,
-        password,
-        xp,
-        bonbons,
-        coupons,
-        attackBatches,
-        defenseBatches,
-        collectedCards,
-        primaryPokemon,
-        collectedBatches,
-      },
-      { where: { id }, returning: true }
-    );
+    const user = await User.findByPk(req.params.id);
 
     if (!user) return res.status(404).json({ message: "User not found" });
-    res
-      .status(200)
-      .json({ message: "User successfully updated.", data: user[1] });
+    const update = await user.update(req.body);
+    res.status(200).json({ message: "User successfully updated.", user });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "server error" });
