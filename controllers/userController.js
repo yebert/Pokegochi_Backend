@@ -3,8 +3,9 @@ import User from "../models/user.js";
 
 const getUsers = async (req, res) => {
   try {
+    console.log(req.headers);
     const users = await User.findAll({
-      attributes: {name, xp},
+      attributes: ["name", "xp"],
       order: [["xp", "DESC"]]
     }, );
     res.json(users);
