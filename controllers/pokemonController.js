@@ -4,26 +4,28 @@ import Pokemon from "../models/pokemon.js";
 // GET /pokemon ALL
 const getPokemons = async (req, res) => {
   try {
+    let pokemons = {};
     let { filter, page, limit } = req.query;
-    if (!filter) {
-      filter = {};
-    }
-    let offset = 0;
-    let parsedLimit = 151;
+    if (!filter && !page && !limit) {
+      pokemons = await Pokemon.findAll();
+    } else {
+      let offset = 0;
+      let parsedLimit = 151;
 
     if (page && limit) {
       const parsedPage = parseInt(page);
       parsedLimit = parseInt(limit);
       offset = (parsedPage - 1) * parsedLimit;
     }
-
-    const pokemons = await Pokemon.findAll(
-      {
-        where: filter,
-      },
-      offset,
-      parsedLimit
-    );
+      pokemons = await Pokemon.findAll(
+        {
+          where: filter,
+        },
+        offset,
+        parsedLimit
+      );
+    }
+        
     res.json({ pokemons });
   } catch (error) {
     console.log(error);
